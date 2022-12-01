@@ -45,8 +45,6 @@ import (
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 	"github.com/cosmos/cosmos-sdk/x/auth/vesting"
 	"github.com/cosmos/cosmos-sdk/x/authz"
-	//"github.com/cosmos/cosmos-sdk/x/bank"
-	//bankkeeper "github.com/cosmos/cosmos-sdk/x/bank/keeper"
 	"github.com/terra-money/alliance/custom/bank"
     bankkeeper "github.com/terra-money/alliance/custom/bank/keeper"
 	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
