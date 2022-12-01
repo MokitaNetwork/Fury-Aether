@@ -33,8 +33,8 @@ Requires [Go 1.18+](https://golang.org/dl/)
 ### Linux
 
 ```shell
-mkdir -p ${GOPATH}/src/github.com/aether-official/ && \
-cd ${GOPATH}/src/github.com/aether-official/ && \
+mkdir -p ${GOPATH}/src/github.com/mokitanetwork/ && \
+cd ${GOPATH}/src/github.com/mokitanetwork/ && \
 git clone https://github.com/mokitanetwork/aether.git && \
 cd ${GOPATH}/src/github.com/mokitanetwork/aether/ && \
 make install
@@ -43,16 +43,16 @@ make install
 ## Testnet
 
 To verify latest testnet and main net version check
-[Version](https://github.com/aether-official/networks/blob/main/README.md)
+[Version](https://github.com/mokitanetwork/networks/blob/main/README.md)
 
 For further information on joining the testnet, head over to the
-[Aether Networks TestNet](https://github.com/aether-official/networks/tree/main/testnet).
+[Aether Networks TestNet](https://github.com/mokitanetwork/networks/tree/main/testnet).
 
 The explorer for this chain is hosted [Meteor - TestNet Explorer](https://meteor-explorer.aether.one)
 
 ## Main Net
 For further information on joining the mainnet, head over to the
-[Aether Networks MainNet](https://github.com/aether-official/networks/tree/main/mainnet).
+[Aether Networks MainNet](https://github.com/mokitanetwork/networks/tree/main/mainnet).
 
 
 ## Main Net Explorers
@@ -65,7 +65,7 @@ The explorer for this chain is hosted
 * [ZenChainLabs](https://aether.zenscan.io/)
 
 ## want to contribute to aether, please go through the contribution guides
-* [Contribution guides](https://github.com/aether-official/contribution-docs)
+* [Contribution guides](https://github.com/mokitanetwork/contribution-docs)
 
 ## License
 

@@ -15,7 +15,7 @@ def SetupNewChain():
     subprocess.getstatusoutput("rm -rf ~/.aether")
     print("deleted previos state")
     print("rebuilding binaries.....")
-    response = subprocess.getstatusoutput(f"make install --directory={aether_DIR_PATH}")
+    response = subprocess.getstatusoutput(f"make install --directory={AETHER_DIR_PATH}")
     print(response[1])
     print("binary re-build done ✔️")
     subprocess.getstatusoutput("sudo mv ~/go/bin/aether /usr/local/bin")
@@ -415,8 +415,8 @@ def CreateState():
 def main():
     if not os.path.exists(HOME_DIR):
         exit(f"Error - root dir not found {HOME_DIR}")
-    if not os.path.exists(aether_DIR_PATH):
-        exit(f"Error - invalid aether repo path {aether_DIR_PATH}")
+    if not os.path.exists(AETHER_DIR_PATH):
+        exit(f"Error - invalid aether repo path {AETHER_DIR_PATH}")
     SetupNewChain()
     thr = threading.Thread(target=StartChain, args=(), kwargs={})
     thr.start()
