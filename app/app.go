@@ -45,8 +45,8 @@ import (
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 	"github.com/cosmos/cosmos-sdk/x/auth/vesting"
 	"github.com/cosmos/cosmos-sdk/x/authz"
-	"github.com/cosmos/cosmos-sdk/x/bank"
-	bankkeeper "github.com/cosmos/cosmos-sdk/x/bank/keeper"
+	//"github.com/cosmos/cosmos-sdk/x/bank"
+	//bankkeeper "github.com/cosmos/cosmos-sdk/x/bank/keeper"
 	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
 	"github.com/cosmos/cosmos-sdk/x/capability"
 	capabilitykeeper "github.com/cosmos/cosmos-sdk/x/capability/keeper"
@@ -171,6 +171,11 @@ import (
 	tv3_0_0 "github.com/mokitanetwork/aether/app/upgrades/testnet/v3_0_0"
 	tv4_0_0 "github.com/mokitanetwork/aether/app/upgrades/testnet/v4_0_0"
 	tv5_0_0 "github.com/mokitanetwork/aether/app/upgrades/testnet/v5_0_0"
+	
+	alliancemodule "github.com/terra-money/alliance/x/alliance"
+	alliancemoduleclient "github.com/terra-money/alliance/x/alliance/client"
+	alliancemodulekeeper "github.com/terra-money/alliance/x/alliance/keeper"
+	alliancemoduletypes "github.com/terra-money/alliance/x/alliance/types"
 )
 
 const (
@@ -209,12 +214,31 @@ func GetGovProposalHandlers() []govclient.ProposalHandler {
 		upgradeclient.CancelProposalHandler,
 		ibcclientclient.UpdateClientProposalHandler,
 		ibcclientclient.UpgradeProposalHandler,
+		
+		
 	}
 	proposalHandlers = append(proposalHandlers, wasmclient.ProposalHandlers...)
 	proposalHandlers = append(proposalHandlers, assetclient.AddAssetsHandler...)
 	proposalHandlers = append(proposalHandlers, liquidityclient.LiquidityProposalHandler...)
 	return proposalHandlers
 }
+
+func getGovProposalHandlers() []govclient.ProposalHandler {
+	var govProposalHandlers []govclient.ProposalHandler
+	// this line is used by starport scaffolding # stargate/app/govProposalHandlers
+
+	govProposalHandlers = append(govProposalHandlers,
+		alliancemoduleclient.CreateAllianceProposalHandler,
+		alliancemoduleclient.UpdateAllianceProposalHandler,
+		alliancemoduleclient.DeleteAllianceProposalHandler,
+		// this line is used by starport scaffolding # stargate/app/govProposalHandler
+	)
+
+	return govProposalHandlers
+}
+
+
+
 
 var (
 	// DefaultNodeHome default home directories for the application daemon
@@ -265,7 +289,15 @@ var (
 		liquidity.AppModuleBasic{},
 		rewards.AppModuleBasic{},
 		ica.AppModuleBasic{},
+		alliancemodule.AppModuleBasic{},
 	)
+	
+	maccPerms = map[string][]string{
+		ibctransfertypes.ModuleName:         {authtypes.Minter, authtypes.Burner},
+		alliancemoduletypes.ModuleName:      {authtypes.Minter, authtypes.Burner},
+		alliancemoduletypes.RewardsPoolName: nil,
+		// this line is used by starport scaffolding # stargate/app/maccPerms
+	}
 )
 
 var _ servertypes.Application = (*App)(nil)
@@ -338,11 +370,13 @@ type App struct {
 	TokenmintKeeper   tokenmintkeeper.Keeper
 	LiquidityKeeper   liquiditykeeper.Keeper
 	Rewardskeeper     rewardskeeper.Keeper
+	AllianceKeeper alliancemodulekeeper.Keeper
 
 	WasmKeeper wasm.Keeper
 	// the module manager
 	mm *module.Manager
 	// Module configurator
+	sm           *module.SimulationManager
 	configurator module.Configurator
 }
 
@@ -373,7 +407,7 @@ func New(
 			vaulttypes.StoreKey, assettypes.StoreKey, collectortypes.StoreKey, liquidationtypes.StoreKey,
 			markettypes.StoreKey, bandoraclemoduletypes.StoreKey, lockertypes.StoreKey,
 			wasm.StoreKey, authzkeeper.StoreKey, auctiontypes.StoreKey, tokenminttypes.StoreKey,
-			rewardstypes.StoreKey, feegrant.StoreKey, liquiditytypes.StoreKey, esmtypes.ModuleName, lendtypes.StoreKey,
+			rewardstypes.StoreKey, feegrant.StoreKey, liquiditytypes.StoreKey, esmtypes.ModuleName, lendtypes.StoreKey, alliancemoduletypes.StoreKey,
 		)
 	)
 
@@ -519,12 +553,24 @@ func New(
 		homePath,
 		app.BaseApp,
 	)
+	app.AllianceKeeper = alliancemodulekeeper.NewKeeper(
+		appCodec,
+		keys[alliancemoduletypes.StoreKey],
+		app.GetSubspace(alliancemoduletypes.ModuleName),
+		app.AccountKeeper,
+		app.BankKeeper,
+		&stakingKeeper,
+		app.DistrKeeper,
+	)
+
+	app.BankKeeper.RegisterKeepers(app.AllianceKeeper, &stakingKeeper)
 	// register the staking hooks
 	// NOTE: StakingKeeper above is passed by reference, so that it will contain these hooks
 	app.StakingKeeper = *stakingKeeper.SetHooks(
 		stakingtypes.NewMultiStakingHooks(
 			app.DistrKeeper.Hooks(),
 			app.SlashingKeeper.Hooks(),
+			app.AllianceKeeper.StakingHooks()),
 		),
 	)
 
@@ -760,8 +806,8 @@ func New(
 	)
 
 	// register the proposal types
-	govRouter := govtypes.NewRouter()
-	govRouter.AddRoute(govtypes.RouterKey, govtypes.ProposalHandler).
+	govRouter := govv1beta1.NewRouter()
+	govRouter.AddRoute(govtypes.RouterKey, govv1beta1.ProposalHandler).
 		AddRoute(paramproposal.RouterKey, params.NewParamChangeProposalHandler(app.ParamsKeeper)).
 		AddRoute(distrtypes.RouterKey, distr.NewCommunityPoolSpendProposalHandler(app.DistrKeeper)).
 		AddRoute(upgradetypes.RouterKey, upgrade.NewSoftwareUpgradeProposalHandler(app.UpgradeKeeper)).
@@ -770,20 +816,24 @@ func New(
 		AddRoute(bandoraclemoduletypes.RouterKey, bandoraclemodule.NewFetchPriceHandler(app.BandoracleKeeper)).
 		AddRoute(ibchost.RouterKey, ibcclient.NewClientProposalHandler(app.IbcKeeper.ClientKeeper)).
 		AddRoute(ibcclienttypes.RouterKey, ibcclient.NewClientProposalHandler(app.IbcKeeper.ClientKeeper)).
-		AddRoute(liquiditytypes.RouterKey, liquidity.NewLiquidityProposalHandler(app.LiquidityKeeper))
+		AddRoute(liquiditytypes.RouterKey, liquidity.NewLiquidityProposalHandler(app.LiquidityKeeper)).
+		AddRoute(alliancemoduletypes.RouterKey, alliancemodule.NewAllianceProposalHandler(app.AllianceKeeper))
+
 
 	if len(wasmEnabledProposals) != 0 {
 		govRouter.AddRoute(wasm.RouterKey, wasm.NewWasmProposalHandler(app.WasmKeeper, wasmEnabledProposals))
 	}
-
+	govConfig := govtypes.DefaultConfig()
 	app.GovKeeper = govkeeper.NewKeeper(
-		app.cdc,
-		app.keys[govtypes.StoreKey],
+		app.Codec,
+		keys[govtypes.StoreKey],
 		app.GetSubspace(govtypes.ModuleName),
 		app.AccountKeeper,
 		app.BankKeeper,
 		&stakingKeeper,
 		govRouter,
+		app.MsgServiceRouter(),
+		govConfig,
 	)
 
 	var (
@@ -851,6 +901,8 @@ func New(
 		tokenmint.NewAppModule(app.cdc, app.TokenmintKeeper, app.AccountKeeper, app.BankKeeper),
 		liquidity.NewAppModule(app.cdc, app.LiquidityKeeper, app.AccountKeeper, app.BankKeeper, app.AssetKeeper),
 		rewards.NewAppModule(app.cdc, app.Rewardskeeper, app.AccountKeeper, app.BankKeeper),
+		alliancemodule.NewAppModule(appCodec, app.AllianceKeeper, app.StakingKeeper, app.AccountKeeper, app.BankKeeper, app.interfaceRegistry),
+
 	)
 
 	// During begin block slashing happens after distr.BeginBlocker so that
@@ -891,6 +943,7 @@ func New(
 		liquiditytypes.ModuleName,
 		lendtypes.ModuleName,
 		esmtypes.ModuleName,
+		alliancemoduletypes.ModuleName,
 	)
 
 	app.mm.SetOrderEndBlockers(
@@ -927,6 +980,7 @@ func New(
 		rewardstypes.ModuleName,
 		liquiditytypes.ModuleName,
 		esmtypes.ModuleName,
+		alliancemoduletypes.ModuleName,
 	)
 
 	// NOTE: The genutils module must occur after staking so that pools are
@@ -967,6 +1021,7 @@ func New(
 		liquiditytypes.ModuleName,
 		rewardstypes.ModuleName,
 		crisistypes.ModuleName,
+		alliancemoduletypes.ModuleName,
 	)
 
 	app.mm.RegisterInvariants(&app.CrisisKeeper)
@@ -1072,6 +1127,13 @@ func (a *App) ModuleAccountAddrs() map[string]bool {
 	}
 
 	return accounts
+}
+func (app *App) BlockedModuleAccountAddrs() map[string]bool {
+	modAccAddrs := app.ModuleAccountAddrs()
+	delete(modAccAddrs, authtypes.NewModuleAddress(govtypes.ModuleName).String())
+	delete(modAccAddrs, authtypes.NewModuleAddress(alliancemoduletypes.ModuleName).String())
+
+	return modAccAddrs
 }
 
 // LegacyAmino returns App's amino codec.
@@ -1313,4 +1375,12 @@ func upgradeHandlers(upgradeInfo storetypes.UpgradeInfo, a *App, storeUpgrades *
 	}
 
 	return storeUpgrades
+}
+func initParamsKeeper(appCodec codec.BinaryCodec, legacyAmino *codec.LegacyAmino, key, tkey storetypes.StoreKey) paramskeeper.Keeper {
+	paramsKeeper := paramskeeper.NewKeeper(appCodec, legacyAmino, key, tkey)
+
+	paramsKeeper.Subspace(alliancemoduletypes.ModuleName)
+	// this line is used by starport scaffolding # stargate/app/paramSubspace
+
+	return paramsKeeper
 }
