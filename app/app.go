@@ -45,8 +45,6 @@ import (
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 	"github.com/cosmos/cosmos-sdk/x/auth/vesting"
 	"github.com/cosmos/cosmos-sdk/x/authz"
-	"github.com/terra-money/alliance/custom/bank"
-    bankkeeper "github.com/terra-money/alliance/custom/bank/keeper"
 	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
 	"github.com/cosmos/cosmos-sdk/x/capability"
 	capabilitykeeper "github.com/cosmos/cosmos-sdk/x/capability/keeper"
@@ -171,6 +169,9 @@ import (
 	tv3_0_0 "github.com/mokitanetwork/aether/app/upgrades/testnet/v3_0_0"
 	tv4_0_0 "github.com/mokitanetwork/aether/app/upgrades/testnet/v4_0_0"
 	tv5_0_0 "github.com/mokitanetwork/aether/app/upgrades/testnet/v5_0_0"
+	
+	custombankmodule "github.com/terra-money/alliance/custom/bank"
+	custombankkeeper "github.com/terra-money/alliance/custom/bank/keeper"
 	
 	alliancemodule "github.com/terra-money/alliance/x/alliance"
 	alliancemoduleclient "github.com/terra-money/alliance/x/alliance/client"
