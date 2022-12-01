@@ -53,7 +53,7 @@ func NewRootCmd() (*cobra.Command, aether.EncodingConfig) {
 	cobra.EnableCommandSorting = false
 	root := &cobra.Command{
 		Use:   "aether",
-		Short: "Comdex - Decentralised Synthetic Asset Exchange",
+		Short: "Aether - Decentralised Synthetic Asset Exchange",
 		PersistentPreRunE: func(cmd *cobra.Command, _ []string) error {
 			if err := client.SetCmdClientContextHandler(context, cmd); err != nil {
 				return err

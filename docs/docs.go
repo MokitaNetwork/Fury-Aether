@@ -26,8 +26,8 @@ var SwaggerInfo = swaggerInfo{
 	Host:        "localhost:1317",
 	BasePath:    "",
 	Schemes:     []string{},
-	Title:       "Comdex Swagger Documentation",
-	Description: "API Documentation of Comdex custom modules",
+	Title:       "Aether Swagger Documentation",
+	Description: "API Documentation of Aether custom modules",
 }
 
 type s struct{}

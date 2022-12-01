@@ -371,7 +371,7 @@ type App struct {
 	TokenmintKeeper   tokenmintkeeper.Keeper
 	LiquidityKeeper   liquiditykeeper.Keeper
 	Rewardskeeper     rewardskeeper.Keeper
-	AllianceKeeper alliancemodulekeeper.Keeper
+	AllianceKeeper    alliancemodulekeeper.Keeper
 
 	WasmKeeper wasm.Keeper
 	// the module manager
@@ -564,7 +564,6 @@ func New(
 		&stakingKeeper,
 		app.DistrKeeper,
 	)
-
 	app.BankKeeper.RegisterKeepers(app.AllianceKeeper, &stakingKeeper)
 	// register the staking hooks
 	// NOTE: StakingKeeper above is passed by reference, so that it will contain these hooks
@@ -573,7 +572,6 @@ func New(
 			app.DistrKeeper.Hooks(),
 			app.SlashingKeeper.Hooks(),
 			app.AllianceKeeper.StakingHooks()),
-		),
 	)
 
 	// Create IBC Keeper
