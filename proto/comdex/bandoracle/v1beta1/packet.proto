@@ -1,0 +1,15 @@
+syntax = "proto3";
+package aether.bandoracle.v1beta1;
+
+
+option go_package = "github.com/mokitanetwork/aether/x/bandoracle/types";
+
+message BandoraclePacketData {
+    oneof packet {
+        NoData noData = 1;
+    }
+}
+
+message NoData {
+}
+

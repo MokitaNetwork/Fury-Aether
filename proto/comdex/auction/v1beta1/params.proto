@@ -1,0 +1,9 @@
+syntax = "proto3";
+package aether.auction.v1beta1;
+
+
+option go_package = "github.com/mokitanetwork/aether/x/auction/types";
+
+message Params {
+
+}

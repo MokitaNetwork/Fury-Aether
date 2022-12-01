@@ -1,0 +1,7 @@
+syntax = "proto3";
+package aether.bandoracle.v1beta1;
+
+option go_package = "github.com/mokitanetwork/aether/x/bandoracle/types";
+
+// Params defines the parameters for the module.
+message Params {}

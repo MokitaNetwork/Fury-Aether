@@ -1,0 +1,14 @@
+syntax = "proto3";
+package aether.tokenmint.v1beta1;
+
+import "gogoproto/gogo.proto";
+import "aether/tokenmint/v1beta1/mint.proto";
+import "aether/tokenmint/v1beta1/params.proto";
+
+option go_package = "github.com/mokitanetwork/aether/x/tokenmint/types";
+
+message GenesisState {
+  repeated TokenMint tokenMint = 1
+  [(gogoproto.moretags) = "yaml:\"tokenMint\"", (gogoproto.nullable) = false];
+  Params params = 2 [(gogoproto.nullable) = false];
+}

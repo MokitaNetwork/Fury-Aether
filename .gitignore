@@ -1,0 +1,10 @@
+/vendor/
+/.vscode/
+/.idea/
+/target/
+/release/
+/build/
+/cover.out
+/bin/
+__pycache__
+*.pyc

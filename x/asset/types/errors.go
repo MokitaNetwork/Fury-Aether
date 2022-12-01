@@ -1,0 +1,52 @@
+package types
+
+import (
+	"github.com/cosmos/cosmos-sdk/types/errors"
+)
+
+var (
+	ErrorInvalidDecimals  = errors.Register(ModuleName, 101, "invalid decimals")
+	ErrorInvalidDenom     = errors.Register(ModuleName, 102, "invalid denom")
+	ErrorInvalidFrom      = errors.Register(ModuleName, 103, "invalid from")
+	ErrorInvalidRecipient = errors.Register(ModuleName, 104, "invalid recipient address")
+	ErrorInvalidID        = errors.Register(ModuleName, 105, "invalid id")
+
+	ErrorInvalidName          = errors.Register(ModuleName, 106, "invalid name")
+	ErrorInvalidGenesisSupply = errors.Register(ModuleName, 109, "invalid Genesis Supply")
+	ErrorInvalidMinGovSupply  = errors.Register(ModuleName, 110, "invalid min gov supply")
+)
+
+var (
+	ErrorAssetDoesNotExist                 = errors.Register(ModuleName, 201, "asset does not exist")
+	ErrorDuplicateAsset                    = errors.Register(ModuleName, 202, "duplicate asset")
+	ErrorPairDoesNotExist                  = errors.Register(ModuleName, 203, "pair does not exist")
+	ErrorDuplicatePair                     = errors.Register(ModuleName, 204, "duplicate pair")
+	ErrorDuplicateApp                      = errors.Register(ModuleName, 206, "duplicate app")
+	ErrorPairNameForID                     = errors.Register(ModuleName, 207, "already has pair name for id in this app")
+	AppIdsDoesntExist                      = errors.Register(ModuleName, 209, "app ids does not exist")
+	ErrorAssetAlreadyExistingApp           = errors.Register(ModuleName, 210, "asset already exist in App")
+	ErrorAssetIsOffChain                   = errors.Register(ModuleName, 211, "asset has been marked off chain")
+	ErrorDebtFloorIsGreaterThanDebtCeiling = errors.Register(ModuleName, 212, "Debt Floor Is Greater Than Debt Ceiling")
+	ErrorGenesisTokenExistForApp           = errors.Register(ModuleName, 213, "Genesis Token already Exist For App")
+	ErrorFeeShouldNotBeGTOne               = errors.Register(ModuleName, 215, "Fee Should Not Be Greater than One and less than zero")
+	ErrorExtendedPairDoesNotExistForTheApp = errors.Register(ModuleName, 216, "extended pair does not exist for the app")
+	ErrorMinGovDepositIsZero               = errors.Register(ModuleName, 217, "min gov deposit is zero")
+	ErrorShortNameDidNotMeetCriterion      = errors.Register(ModuleName, 218, "App ShortName didn't meet the criterion")
+	ErrorNameDidNotMeetCriterion           = errors.Register(ModuleName, 219, "Asset Name didn't meet the criterion")
+	ErrorReversePairAlreadyExist           = errors.Register(ModuleName, 220, "Reverse pair already exists")
+	ErrorValueCantBeNegative               = errors.Register(ModuleName, 221, "Value can't be negative")
+	ErrorAppNameDidNotMeetCriterion        = errors.Register(ModuleName, 222, "App Name didn't meet the criterion")
+	ErrorPairNameDidNotMeetCriterion       = errors.Register(ModuleName, 223, "Pair Name didn't meet the criterion")
+	ErrorDuplicateShortNameForApp          = errors.Register(ModuleName, 224, "duplicate short name for app")
+	ErrorIsCDPMintableDisabled             = errors.Register(ModuleName, 225, "can not use asset out for which cdp mintable is false")
+	ErrorMinGovDepositShouldBeZero         = errors.Register(ModuleName, 226, "min gov deposit should be zero if token not used for governance")
+	ErrorOffChainAssetCannotBeMintable     = errors.Register(ModuleName, 227, "Off Chain Asset Can not Be Mintable")
+)
+
+var (
+	ErrorUnknownProposalType        = errors.Register(ModuleName, 401, "unknown proposal type")
+	ErrorEmptyProposalAssets        = errors.Register(ModuleName, 402, "empty assets in proposal")
+	ErrorUnknownAppType             = errors.Register(ModuleName, 403, "unknown app type")
+	ErrorProposalTitleMissing       = errors.Register(ModuleName, 404, "proposal title missing")
+	ErrorProposalDescriptionMissing = errors.Register(ModuleName, 405, "proposal description missing")
+)

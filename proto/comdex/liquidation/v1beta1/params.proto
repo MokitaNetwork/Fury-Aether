@@ -1,0 +1,8 @@
+syntax = "proto3";
+package aether.liquidation.v1beta1;
+
+option go_package = "github.com/mokitanetwork/aether/x/liquidation/types";
+
+message Params {
+    uint64 liquidation_batch_size = 1;
+} 
