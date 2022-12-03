@@ -63,7 +63,7 @@ func (m *CustomMessenger) DispatchMsg(ctx sdk.Context, contractAddr sdk.AccAddre
 	if msg.Custom != nil {
 		// only handle the happy path where this is really minting / swapping ...
 		// leave everything else for the wrapped version
-		var aetherMsg bindings.AetherMessages
+		var aetherMsg bindings.ComdexMessages
 		if err := json.Unmarshal(msg.Custom, &aetherMsg); err != nil {
 			return nil, nil, sdkerrors.Wrap(err, "aether msg error")
 		}

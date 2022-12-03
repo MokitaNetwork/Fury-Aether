@@ -736,17 +736,17 @@ func RegisterQueryHandlerClient(ctx context.Context, mux *runtime.ServeMux, clie
 }
 
 var (
-	pattern_Query_Params_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"mokitanetwork", "aether", "collector", "params"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_Query_Params_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"aether-official", "aether", "collector", "params"}, "", runtime.AssumeColonVerbOpt(false)))
 
-	pattern_Query_QueryCollectorLookupByApp_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"aether", "collector", "v1beta1", "collector-lookup-by-app", "app_id"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_Query_QueryCollectorLookupByApp_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"aether", "collector", "v1beta1", "collector-lookup-by-app", "app_id"}, "", runtime.AssumeColonVerbOpt(false)))
 
-	pattern_Query_QueryCollectorLookupByAppAndAsset_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 1, 0, 4, 1, 5, 5}, []string{"aether", "collector", "v1beta1", "collector-lookup-by-app-and-asset", "app_id", "asset_id"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_Query_QueryCollectorLookupByAppAndAsset_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 1, 0, 4, 1, 5, 5}, []string{"aether", "collector", "v1beta1", "collector-lookup-by-app-and-asset", "app_id", "asset_id"}, "", runtime.AssumeColonVerbOpt(false)))
 
-	pattern_Query_QueryCollectorDataByAppAndAsset_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 1, 0, 4, 1, 5, 5}, []string{"aether", "collector", "v1beta1", "collector-data-by-app-and-asset", "app_id", "asset_id"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_Query_QueryCollectorDataByAppAndAsset_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 1, 0, 4, 1, 5, 5}, []string{"aether", "collector", "v1beta1", "collector-data-by-app-and-asset", "app_id", "asset_id"}, "", runtime.AssumeColonVerbOpt(false)))
 
-	pattern_Query_QueryAuctionMappingForAppAndAsset_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 1, 0, 4, 1, 5, 5}, []string{"aether", "collector", "v1beta1", "auction-data-by-app-and-asset", "app_id", "asset_id"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_Query_QueryAuctionMappingForAppAndAsset_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 1, 0, 4, 1, 5, 5}, []string{"aether", "collector", "v1beta1", "auction-data-by-app-and-asset", "app_id", "asset_id"}, "", runtime.AssumeColonVerbOpt(false)))
 
-	pattern_Query_QueryNetFeeCollectedForAppAndAsset_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 1, 0, 4, 1, 5, 5}, []string{"aether", "collector", "v1beta1", "net-fee-data-by-app-and-asset", "app_id", "asset_id"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_Query_QueryNetFeeCollectedForAppAndAsset_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 1, 0, 4, 1, 5, 5}, []string{"aether", "collector", "v1beta1", "net-fee-data-by-app-and-asset", "app_id", "asset_id"}, "", runtime.AssumeColonVerbOpt(false)))
 )
 
 var (

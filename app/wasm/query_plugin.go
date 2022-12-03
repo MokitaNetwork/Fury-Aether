@@ -12,7 +12,7 @@ import (
 
 func CustomQuerier(queryPlugin *QueryPlugin) func(ctx sdk.Context, request json.RawMessage) ([]byte, error) {
 	return func(ctx sdk.Context, request json.RawMessage) ([]byte, error) {
-		var aetherQuery bindings.AetherQuery
+		var aetherQuery bindings.ComdexQuery
 		if err := json.Unmarshal(request, &aetherQuery); err != nil {
 			return nil, sdkerrors.Wrap(err, "app query")
 		}

@@ -119,7 +119,7 @@ func MigrateValueAsset(store sdk.KVStore, cdc codec.BinaryCodec) error {
 	asset5 := assettypes.Asset{
 		Id:                    5,
 		Name:                  "cATOM",
-		Denom:                 "ucatom",
+		Denom:                 "usatom",
 		Decimals:              sdk.NewInt(1000000),
 		IsOnChain:             false,
 		IsOraclePriceRequired: false,
@@ -155,7 +155,7 @@ func MigrateValueAsset(store sdk.KVStore, cdc codec.BinaryCodec) error {
 	asset8 := assettypes.Asset{
 		Id:                    8,
 		Name:                  "cOSMO",
-		Denom:                 "ucosmo",
+		Denom:                 "usosmo",
 		Decimals:              sdk.NewInt(1000000),
 		IsOnChain:             false,
 		IsOraclePriceRequired: false,

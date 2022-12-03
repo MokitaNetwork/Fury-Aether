@@ -415,11 +415,11 @@ func RegisterQueryHandlerClient(ctx context.Context, mux *runtime.ServeMux, clie
 }
 
 var (
-	pattern_Query_QueryAllTokenMintedForAllApps_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"aether", "tokenmint", "v1beta1", "total-token-minted-all-apps"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_Query_QueryAllTokenMintedForAllApps_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"aether", "tokenmint", "v1beta1", "total-token-minted-all-apps"}, "", runtime.AssumeColonVerbOpt(false)))
 
-	pattern_Query_QueryTokenMintedByApp_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"aether", "tokenmint", "v1beta1", "token-minted-by-app", "app_id"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_Query_QueryTokenMintedByApp_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"aether", "tokenmint", "v1beta1", "token-minted-by-app", "app_id"}, "", runtime.AssumeColonVerbOpt(false)))
 
-	pattern_Query_QueryTokenMintedByAppAndAsset_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 1, 0, 4, 1, 5, 5}, []string{"aether", "tokenmint", "v1beta1", "token-minted-by-app-and-asset", "app_id", "asset_id"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_Query_QueryTokenMintedByAppAndAsset_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 1, 0, 4, 1, 5, 5}, []string{"aether", "tokenmint", "v1beta1", "token-minted-by-app-and-asset", "app_id", "asset_id"}, "", runtime.AssumeColonVerbOpt(false)))
 )
 
 var (
