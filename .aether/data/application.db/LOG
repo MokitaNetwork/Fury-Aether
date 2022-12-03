@@ -1,0 +1,40 @@
+=============== Dec 3, 2022 (IST) ===============
+03:51:56.700738 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+03:51:56.713532 db@open opening
+03:51:56.714387 version@stat F·[] S·0B[] Sc·[]
+03:51:56.718600 db@janitor F·2 G·0
+03:51:56.718677 db@open done T·5.093375ms
+=============== Dec 3, 2022 (IST) ===============
+03:52:18.051035 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+03:52:18.054297 version@stat F·[] S·0B[] Sc·[]
+03:52:18.054649 db@open opening
+03:52:18.054887 journal@recovery F·1
+03:52:18.055309 journal@recovery recovering @1
+03:52:18.064989 memdb@flush created L0@2 N·2001 S·119KiB "s/1,v292":"s/p..hts,v294"
+03:52:18.065852 version@stat F·[1] S·119KiB[119KiB] Sc·[0.25]
+03:52:18.081073 db@janitor F·3 G·0
+03:52:18.081300 db@open done T·26.444125ms
+=============== Dec 3, 2022 (IST) ===============
+03:52:34.152614 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+03:52:34.156416 version@stat F·[1] S·119KiB[119KiB] Sc·[0.25]
+03:52:34.156682 db@open opening
+03:52:34.157006 journal@recovery F·1
+03:52:34.157611 journal@recovery recovering @3
+03:52:34.158363 version@stat F·[1] S·119KiB[119KiB] Sc·[0.25]
+03:52:34.172005 db@janitor F·3 G·0
+03:52:34.172231 db@open done T·15.356583ms
+=============== Dec 3, 2022 (IST) ===============
+03:52:48.759622 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+03:52:48.763472 version@stat F·[1] S·119KiB[119KiB] Sc·[0.25]
+03:52:48.763721 db@open opening
+03:52:48.764034 journal@recovery F·1
+03:52:48.764284 journal@recovery recovering @5
+03:52:48.772222 memdb@flush created L0@7 N·1203 S·67KiB "s/21,v2091":"s/p..hts,v2093"
+03:52:48.772903 version@stat F·[2] S·186KiB[186KiB] Sc·[0.50]
+03:52:48.787871 db@janitor F·4 G·0
+03:52:48.788148 db@open done T·24.175125ms
+03:52:48.818778 table@compaction L0·2 -> L1·0 S·186KiB Q·3206
+03:52:48.824389 table@build created L1@10 N·3140 S·187KiB "s/1,v292":"s/p..hts,v3205"
+03:52:48.825128 version@stat F·[0 1] S·187KiB[0B 187KiB] Sc·[0.00 0.00]
+03:52:48.829505 table@compaction committed F-1 S+463B Ke·0 D·64 T·10.335375ms
+03:52:48.830243 table@remove removed @2

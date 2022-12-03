@@ -868,21 +868,21 @@ func RegisterQueryHandlerClient(ctx context.Context, mux *runtime.ServeMux, clie
 }
 
 var (
-	pattern_Query_Params_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"aether", "v1beta1", "esm", "params"}, "", runtime.AssumeColonVerbOpt(false)))
+	pattern_Query_Params_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"aether", "v1beta1", "esm", "params"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_Query_QueryESMTriggerParams_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"aether", "esm", "v1beta1", "esm_trigger_params", "id"}, "", runtime.AssumeColonVerbOpt(false)))
+	pattern_Query_QueryESMTriggerParams_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"aether", "esm", "v1beta1", "esm_trigger_params", "id"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_Query_QueryESMStatus_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"aether", "esm", "v1beta1", "esm_status", "id"}, "", runtime.AssumeColonVerbOpt(false)))
+	pattern_Query_QueryESMStatus_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"aether", "esm", "v1beta1", "esm_status", "id"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_Query_QueryCurrentDepositStats_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"aether", "esm", "v1beta1", "current_deposit_stats", "id"}, "", runtime.AssumeColonVerbOpt(false)))
+	pattern_Query_QueryCurrentDepositStats_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"aether", "esm", "v1beta1", "current_deposit_stats", "id"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_Query_QueryUsersDepositMapping_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 1, 0, 4, 1, 5, 5}, []string{"aether", "esm", "v1beta1", "user_deposit_mapping", "id", "depositor"}, "", runtime.AssumeColonVerbOpt(false)))
+	pattern_Query_QueryUsersDepositMapping_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 1, 0, 4, 1, 5, 5}, []string{"aether", "esm", "v1beta1", "user_deposit_mapping", "id", "depositor"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_Query_QueryDataAfterCoolOff_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"aether", "esm", "v1beta1", "data_after_cool_off", "id"}, "", runtime.AssumeColonVerbOpt(false)))
+	pattern_Query_QueryDataAfterCoolOff_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"aether", "esm", "v1beta1", "data_after_cool_off", "id"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_Query_QuerySnapshotPrice_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 1, 0, 4, 1, 5, 5}, []string{"aether", "esm", "v1beta1", "price_snapshot", "app_id", "asset_id"}, "", runtime.AssumeColonVerbOpt(false)))
+	pattern_Query_QuerySnapshotPrice_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 1, 0, 4, 1, 5, 5}, []string{"aether", "esm", "v1beta1", "price_snapshot", "app_id", "asset_id"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_Query_QueryAssetDataAfterCoolOff_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"aether", "esm", "v1beta1", "asset_data_after_cool_off", "app_id"}, "", runtime.AssumeColonVerbOpt(false)))
+	pattern_Query_QueryAssetDataAfterCoolOff_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"aether", "esm", "v1beta1", "asset_data_after_cool_off", "app_id"}, "", runtime.AssumeColonVerbOpt(true)))
 )
 
 var (

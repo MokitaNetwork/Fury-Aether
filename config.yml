@@ -30,24 +30,28 @@ client:
     path: ts-client
   vuex:
     path: vue/src/store
+  composables:
+    path: vue/src/composables
+  hooks:
+    path: react/src/hooks
   openapi:
     path: docs/static/openapi.yml
 genesis:
   app_state:
     alliance:
       assets:
-      - denom: uluna
+      - denom: uaeth
         reward_weight: "0.5"
         take_rate: "0.000005"
-      - denom: bluna
+      - denom: baeth
         reward_weight: "0.9"
         take_rate: "0.0000009"
       - denom: token
         reward_weight: "5"
         take_rate: "0.0000009"
       params:
-        take_rate_claim_interval: 10s
         reward_delay_time: 60s
+        take_rate_claim_interval: 10s
 validators:
 - name: alice
   bonded: 100000000stake
